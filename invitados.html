@@ -1,0 +1,345 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Alexis y Arely!</title>
+    <meta name="description" content="We would like to invite you to our big day.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:title" content="Ram & Antara getting hitched">
+    <meta property="og:description" content="We would like to invite you to our big day.">
+    <meta property="og:image" content="http://staffmobility.eu/sites/default/files/isewtweetbg.jpg">
+    <meta property="og:type" content="website">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/jquery.fancybox.css">
+    <link rel="stylesheet" href="css/flexslider.css">
+    <link rel="stylesheet" href="css/styles.min.css">
+    <link rel="stylesheet" href="css/queries.css">
+    <link rel="stylesheet" href="node_modules/animate.css/animate.min.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
+    <link rel="stylessheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
+
+    <link rel="stylessheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+
+    <link rel="stylessheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+
+
+    <link rel="stylessheet" href="https://cdn.datatables.net/select/1.4.0/css/select.dataTables.min.css">
+
+
+    <link rel="stylessheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
+
+
+
+
+
+
+
+</head>
+
+<body id="top">
+    <!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+    <section class="hero">
+        <section class="navigation">
+            <header>
+                <div class="header-content">
+                    <div class="logo"><a href="#"><img src="img/logo.png" alt="Logo"></a></div>
+                </div>
+            </header>
+        </section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="hero-content text-center">
+                        <!--<h1>Ram and Antara</h1>-->
+                        <img src="img/logo-lg.png" style="margin-bottom: 0px;">
+
+                        <p>
+                            <b id="days"></b>
+                            <b id="hours"></b>
+                            <b id="mins"></b>
+                            <b id="secs"></b>
+                        <h3></h3>
+                        <h2 id="end"></h2>
+
+                        </p>
+
+
+                        <!--<p class="intro">Ram & Antara are getting hitched!</p>-->
+                        <!--<a href="#" class="btn btn-fill btn-large btn-margin-right">Scroll Down</a> -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section id="invitadoslista" class="section-padding">
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-10 col-md-offset-1 text-center">
+                    <textarea id="urlcustom" rows="7" cols="80" name="description" style="color:black;font-weight:500">
+
+                    </textarea><br>
+                    <div id="copiarurl" class="btn">COPIAR URL</div>
+                </div>
+                <div class="col-md-10 col-md-offset-1">
+                    <p>Total Invitaciones: <i id="ttlinv">0</i><br>
+                        Total Personas:<i id="ttlp">0</i><br>
+                        Personas Confirmadas:<i id="ttlc">0</i></p><br>
+                </div>
+                <div class="col-md-10 col-md-offset-1">
+
+                    <button id="btnConfirmados" class="btn">FILTRAR CONFIRMADOS</button>
+                    <button id="btnPendientes" class="btn">FILTRAR PENDIENTES</button>
+                    <button id="btnRemoverFiltros" class="btn">QUITAR FILTROS</button>
+
+                </div>
+
+                <div class="col-md-10 col-md-offset-1">
+                    <table id="tblinvitados" class="table table-striped table-bordered Display" style="width:100%">
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <style>
+        i {
+            color: black;
+            font-weight: 700;
+        }
+
+        .fixed {
+            position: fixed;
+            background-color: hsl(218deg 50% 35% / 73%);
+            z-index: 999;
+            width: 100%;
+        }
+
+        td,
+        th {
+            padding: 0;
+            white-space: nowrap;
+            color: black;
+            font-weight: 700;
+        }
+
+        b,
+        strong {
+            font-weight: 100;
+            color: white;
+            font-size: 30px;
+            font-family: 'Open Sans';
+        }
+
+        p {
+            font-size: 20px;
+            line-height: 29px;
+            color: #777A88;
+            padding-bottom: 20px;
+        }
+
+        h3 {
+            color: #ffffffba;
+            font-size: 25px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            line-height: 29px;
+        }
+
+        header .logo img {
+            height: 50px;
+        }
+
+        .hero {
+            min-height: 100vh;
+        }
+
+        @media (max-width: 480px) {
+            .hero .hero-content img {
+                width: 86%;
+            }
+
+            #imgsavedate img {
+                width: 100%;
+            }
+        }
+
+        .hero .hero-content img {
+            width: 90%;
+            margin-bottom: 12%;
+        }
+
+        .selected {
+            background-color: rgb(111, 111, 199) !important;
+            color: white;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+    <script src="js/jquery.fancybox.pack.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/jquery.flexslider-min.js"></script>
+    <script src="js/jquery.mb.YTPlayer.min.js"></script>
+    <script src="node_modules/waypoints/lib/jquery.waypoints.min.js"></script>
+    <script src="js/vendor/ouical.js"></script>
+    <script src="js/scripts.min.js"></script>
+    <script src="invitaciones.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+
+    <script src="https://cdn.datatables.net/select/1.4.0/js/dataTables.select.min.js"></script>
+
+
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+
+
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            CrearTabla();
+            $('#copiarurl').on('click', function () {
+                var data = table.row({ selected: true }).data();
+
+                if (data != undefined && table != undefined) {
+                    let copyText = document.querySelector("#urlcustom");
+                    copyText.select();
+                    document.execCommand("copy");
+                    alert("Copiado: Invitacion de: " + data.nombre + ' Codigo:' + data.code);
+                }
+            })
+        });
+        function CrearTabla() {
+            var Invitacion = { code: 500 };
+
+            Invitacion.tipo = 'get'
+            var t = $.param(Invitacion);
+            $.post("https://script.google.com/macros/s/AKfycbxl3X8gmBrRV14Afx-ZfKSNfIdjrEvvpJM7HviIzNNb3L25-zJcb1Im10AFeF3Jip6v/exec", t).done(function (e) {
+
+                var datos = e.data;
+                if (e.result == 'error') {
+                    console.log('error');
+                }
+                else {
+
+                    var totales = { totalinvitaciones: 0, personas: 0, confirmadas: 0 }
+                    datos = datos.filter(e => e.nombre != 'INVALID' && e.nombre != '"nombre"');
+
+                    datos.forEach(el => {
+                        el.URL = 'https://alexismartinezrs.github.io/a_and_a/?code=' + el.code;
+                        el.confirmaciones = el.confirmaciones > 0 ? 'Y' : 'N';
+                        totales.totalinvitaciones++;
+                        totales.personas += el.personas;
+                        totales.confirmadas += el.confirmaciones == 'Y' ? el.personas : 0;
+                    });
+
+                    $('#ttlinv').text(totales.totalinvitaciones);
+                    $('#ttlp').text(totales.personas);
+                    $('#ttlc').text(totales.confirmadas);
+
+                    table = $('#tblinvitados').DataTable(
+                        {
+                            data: datos,
+                            dom: "<'row'<'col-sm-6'f>>" +
+                                "<'row'<'col-sm-12'tr>>" +
+                                "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+                            ordering: true,
+                            scrollY: '40vh',
+                            scrollCollapse: true,
+                            paging: false,
+                            sScrollX: "100%",
+                            select: true,
+                            columns: [
+                                { data: 'code', title: 'CODIGO' },
+                                { data: 'nombre', title: 'NOMBRE' },
+                                { data: 'personas', title: 'PERSONAS' },
+                                { data: 'confirmaciones', title: 'CONFIRMACION' },
+                                {
+                                    data: 'URL', title: 'URL A COMPARTIR',
+                                    render: function (data, type, row, meta) {
+
+
+                                        data = '<a href="' + data + '">' + row.code + '</a>';
+                                        return data;
+                                    }
+
+
+                                },
+
+                            ]
+                        }
+
+                    );
+                    table
+                        .on('select', function (e, dt, type, indexes) {
+                            var data = table.row({ selected: true }).data();
+                            var texto = 'Hola, ' + data.nombre + ' nos gustaria que nos acompañaras a nuestra boda. ' +
+                                '\nEl siguiente enlace contiene tu invitacion y mas detalles<3.' +
+                                '\nPor favor ayudanos confirmando tu asistencia en la misma pagina.' +
+                                '\n\n' + data.URL;
+                            $('#urlcustom').val(texto);
+
+
+                        })
+                        .on('deselect', function (e, dt, type, indexes) {
+                            $('#urlcustom').val('');
+                        });
+
+                    $('#btnConfirmados').on('click', function () {
+                        table.columns(3).search('Y').draw();
+                    })
+                    $('#btnPendientes').on('click', function () {
+                        table.columns(3).search('N').draw();
+                    })
+                    $('#btnRemoverFiltros').on('click', function () {
+                        $('.form-control.form-control-sm').val('');
+                        table.search('');
+                        table.columns().search('').draw();
+                    })
+
+                }
+
+            }).fail(function (e) {
+                console.log('error server');
+            })
+
+        }
+    </script>
+
+
+    <!-- Google Analytics -->
+
+</body>
+
+</html>
