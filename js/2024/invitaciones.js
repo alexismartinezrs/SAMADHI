@@ -3,7 +3,7 @@
 
 
 const urlGoogleScript = `https://script.google.com/macros/s/AKfycbwZN7DkmoCy3PAlkwtQ5D1vySciLt3sMY1V_ePEvJz8z-YqyQwVZdfrdygUzSrUu6W-yw/exec?`
-var qrcode = new QRCode("qrcode");
+
 const invitados = {
 
     loadGuestInfo: () => {
@@ -67,6 +67,7 @@ const invitados = {
 
                         $('#btnConfirmar').show();
                     }
+                    var qrcode = new QRCode("qrcode");
                     qrcode.makeCode(invitado.ID);
                 }
             })

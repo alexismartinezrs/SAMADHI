@@ -12,6 +12,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<<<<<<< Updated upstream
     <title>Inv <title>Alexis y Arely!</title>
         <meta name="description" content="We would like to invite you to our big day.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,6 +35,30 @@
         <link rel="stylesheet" href="node_modules/animate.css/animate.min.css">
         <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+=======
+    <title>Invitados Samadhi!</title>
+    <meta name="description" content="We would like to invite you to our big day.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:title" content="Ram & Antara getting hitched">
+    <meta property="og:description" content="We would like to invite you to our big day.">
+    <meta property="og:image" content="http://staffmobility.eu/sites/default/files/isewtweetbg.jpg">
+    <meta property="og:type" content="website">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/jquery.fancybox.css">
+    <link rel="stylesheet" href="css/flexslider.css">
+    <link rel="stylesheet" href="css/styles.min.css">
+    <link rel="stylesheet" href="css/queries.css">
+    <link rel="stylesheet" href="node_modules/animate.css/animate.min.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+>>>>>>> Stashed changes
 
         <link rel="stylessheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 
@@ -104,22 +129,10 @@
                     <textarea id="urlcustom" rows="7" cols="80" name="description" style="color:black;font-weight:500">
 
                     </textarea><br>
-                    <div id="copiarurl" class="btn">COPIAR URL</div>
-                </div>
-                <div class="col-md-10 col-md-offset-1">
-                    <p>Total Invitaciones: <i id="ttlinv">0</i><br>
-                        Total Personas:<i id="ttlp">0</i><br>
-                        Personas Confirmadas:<i id="ttlc">0</i></p><br>
-                </div>
-                <div class="col-md-10 col-md-offset-1">
-
-                    <button id="btnConfirmados" class="btn">FILTRAR CONFIRMADOS</button>
-                    <button id="btnPendientes" class="btn">FILTRAR PENDIENTES</button>
-                    <button id="btnRemoverFiltros" class="btn">QUITAR FILTROS</button>
-
+                    <div id="copiarurl" class="btn">COPIAR MENSAJE</div>
                 </div>
 
-                <div class="col-md-10 col-md-offset-1">
+                <div class="col-12">
                     <table id="tblinvitados" class="table table-striped table-bordered Display" style="width:100%">
                     </table>
                 </div>
@@ -220,6 +233,8 @@
 
 
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script src="js/qrcode.js"></script>
+    <script src="js/2024/invitaciones.js"></script>
 
 
 
@@ -230,15 +245,76 @@
 
     <script>
 
+
         function LoadData() {
             invitados.getAll().then((res) => {
-                console.log(res)
 
+                console.log(res);
+
+                res.forEach(e => {
+                    e.URL = 'https://alexismartinezrs.github.io/SAMADHI/?id=' + e.ID;
+                })
+
+                table = $('#tblinvitados').DataTable(
+                    {
+                        data: res,
+                        dom: "<'row'<'col-sm-6'f>>" +
+                            "<'row'<'col-sm-12'tr>>" +
+                            "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+                        ordering: true,
+                        scrollY: '40vh',
+                        scrollCollapse: true,
+                        paging: false,
+                        sScrollX: "100%",
+                        select: true,
+                        columns: [
+                            { data: 'ID', title: 'CODIGO' },
+                            { data: 'NOMBRE', title: 'NOMBRE' },
+                            { data: 'FAMILIA', title: 'FAMILIA' },
+                            { data: 'INVITADOS', title: 'INVITADOS' },
+
+                            {
+                                data: 'CONFIRMADO', title: 'CONFIRMADO', render: function (data, type, row, meta) {
+
+
+                                    return data == 1 ? 'Y' : 'N';
+                                }
+                            },
+                            {
+                                data: 'URL', title: 'URL A COMPARTIR',
+                                render: function (data, type, row, meta) {
+
+
+                                    data = '<a href="' + row.URL + '">' + row.ID + '</a>';
+                                    return data;
+                                }
+
+
+                            },
+
+                        ]
+                    }
+
+                );
+                table
+                    .on('select', function (e, dt, type, indexes) {
+                        var data = table.row({ selected: true }).data();
+                        var texto = 'Hola, ' + data.NOMBRE + ' nos gustaria que nos acompañaras a el Bautizo de mi hija Samadhi. ' +
+                            '\nEl siguiente enlace contiene tu invitacion y mas detalles<3.' +
+                            '\nPor favor ayudanos confirmando tu asistencia en la misma pagina.' +
+                            '\n\n' + data.URL;
+                        $('#urlcustom').val(texto);
+
+
+                    })
+                    .on('deselect', function (e, dt, type, indexes) {
+                        $('#urlcustom').val('');
+                    });
             })
         }
 
         $(document).ready(function () {
-            CrearTabla();
+            LoadData();
             $('#copiarurl').on('click', function () {
                 var data = table.row({ selected: true }).data();
 
@@ -246,10 +322,11 @@
                     let copyText = document.querySelector("#urlcustom");
                     copyText.select();
                     document.execCommand("copy");
-                    alert("Copiado: Invitacion de: " + data.nombre + ' Codigo:' + data.code);
+                    alert("Copiado: Invitacion de: " + data.NOMBRE + ' Codigo:' + data.ID);
                 }
             })
         });
+<<<<<<< Updated upstream
         function CrearTabla() {
             var Invitacion = { code: 500 };
 
@@ -345,3 +422,13 @@
             })
 
         }
+=======
+    </script>
+
+
+    <!-- Google Analytics -->
+
+</body>
+
+</html>
+>>>>>>> Stashed changes
