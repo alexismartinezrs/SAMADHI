@@ -12,8 +12,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<<<<<<< Updated upstream
-    <title>Inv <title>Alexis y Arely!</title>
+    <<<<<<< Updated upstream <title>Inv <title>Alexis y Arely!</title>
         <meta name="description" content="We would like to invite you to our big day.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
@@ -35,30 +34,30 @@
         <link rel="stylesheet" href="node_modules/animate.css/animate.min.css">
         <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-=======
-    <title>Invitados Samadhi!</title>
-    <meta name="description" content="We would like to invite you to our big day.">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#ffffff">
-    <meta property="og:title" content="Ram & Antara getting hitched">
-    <meta property="og:description" content="We would like to invite you to our big day.">
-    <meta property="og:image" content="http://staffmobility.eu/sites/default/files/isewtweetbg.jpg">
-    <meta property="og:type" content="website">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="manifest.json">
-    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="stylesheet" href="css/normalize.min.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/jquery.fancybox.css">
-    <link rel="stylesheet" href="css/flexslider.css">
-    <link rel="stylesheet" href="css/styles.min.css">
-    <link rel="stylesheet" href="css/queries.css">
-    <link rel="stylesheet" href="node_modules/animate.css/animate.min.css">
-    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
-    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
->>>>>>> Stashed changes
+        =======
+        <title>Invitados Samadhi!</title>
+        <meta name="description" content="We would like to invite you to our big day.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+        <meta property="og:title" content="Ram & Antara getting hitched">
+        <meta property="og:description" content="We would like to invite you to our big day.">
+        <meta property="og:image" content="http://staffmobility.eu/sites/default/files/isewtweetbg.jpg">
+        <meta property="og:type" content="website">
+        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+        <link rel="manifest" href="manifest.json">
+        <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/jquery.fancybox.css">
+        <link rel="stylesheet" href="css/flexslider.css">
+        <link rel="stylesheet" href="css/styles.min.css">
+        <link rel="stylesheet" href="css/queries.css">
+        <link rel="stylesheet" href="node_modules/animate.css/animate.min.css">
+        <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        >>>>>>> Stashed changes
 
         <link rel="stylessheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 
@@ -326,103 +325,6 @@
                 }
             })
         });
-<<<<<<< Updated upstream
-        function CrearTabla() {
-            var Invitacion = { code: 500 };
-
-            Invitacion.tipo = 'get'
-            var t = $.param(Invitacion);
-            $.post("https://script.google.com/macros/s/AKfycbxl3X8gmBrRV14Afx-ZfKSNfIdjrEvvpJM7HviIzNNb3L25-zJcb1Im10AFeF3Jip6v/exec", t).done(function (e) {
-
-                var datos = e.data;
-                if (e.result == 'error') {
-                    console.log('error');
-                }
-                else {
-
-                    var totales = { totalinvitaciones: 0, personas: 0, confirmadas: 0 }
-                    datos = datos.filter(e => e.nombre != 'INVALID' && e.nombre != '"nombre"');
-
-                    datos.forEach(el => {
-                        el.URL = 'https://alexismartinezrs.github.io/a_and_a/?code=' + el.code;
-                        el.confirmaciones = el.confirmaciones > 0 ? 'Y' : 'N';
-                        totales.totalinvitaciones++;
-                        totales.personas += el.personas;
-                        totales.confirmadas += el.confirmaciones == 'Y' ? el.personas : 0;
-                    });
-
-                    $('#ttlinv').text(totales.totalinvitaciones);
-                    $('#ttlp').text(totales.personas);
-                    $('#ttlc').text(totales.confirmadas);
-
-                    table = $('#tblinvitados').DataTable(
-                        {
-                            data: datos,
-                            dom: "<'row'<'col-sm-6'f>>" +
-                                "<'row'<'col-sm-12'tr>>" +
-                                "<'row'<'col-sm-5'i><'col-sm-7'p>>",
-                            ordering: true,
-                            scrollY: '40vh',
-                            scrollCollapse: true,
-                            paging: false,
-                            sScrollX: "100%",
-                            select: true,
-                            columns: [
-                                { data: 'code', title: 'CODIGO' },
-                                { data: 'nombre', title: 'NOMBRE' },
-                                { data: 'personas', title: 'PERSONAS' },
-                                { data: 'confirmaciones', title: 'CONFIRMACION' },
-                                {
-                                    data: 'URL', title: 'URL A COMPARTIR',
-                                    render: function (data, type, row, meta) {
-
-
-                                        data = '<a href="' + data + '">' + row.code + '</a>';
-                                        return data;
-                                    }
-
-
-                                },
-
-                            ]
-                        }
-
-                    );
-                    table
-                        .on('select', function (e, dt, type, indexes) {
-                            var data = table.row({ selected: true }).data();
-                            var texto = 'Hola, ' + data.nombre + ' nos gustaria que nos acompañaras a nuestra boda. ' +
-                                '\nEl siguiente enlace contiene tu invitacion y mas detalles<3.' +
-                                '\nPor favor ayudanos confirmando tu asistencia en la misma pagina.' +
-                                '\n\n' + data.URL;
-                            $('#urlcustom').val(texto);
-
-
-                        })
-                        .on('deselect', function (e, dt, type, indexes) {
-                            $('#urlcustom').val('');
-                        });
-
-                    $('#btnConfirmados').on('click', function () {
-                        table.columns(3).search('Y').draw();
-                    })
-                    $('#btnPendientes').on('click', function () {
-                        table.columns(3).search('N').draw();
-                    })
-                    $('#btnRemoverFiltros').on('click', function () {
-                        $('.form-control.form-control-sm').val('');
-                        table.search('');
-                        table.columns().search('').draw();
-                    })
-
-                }
-
-            }).fail(function (e) {
-                console.log('error server');
-            })
-
-        }
-=======
     </script>
 
 
@@ -431,4 +333,3 @@
 </body>
 
 </html>
->>>>>>> Stashed changes
