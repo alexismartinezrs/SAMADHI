@@ -226,7 +226,17 @@
 
 
 
+
+
     <script>
+
+        function LoadData() {
+            invitados.getAll().then((res) => {
+                console.log(res)
+
+            })
+        }
+
         $(document).ready(function () {
             CrearTabla();
             $('#copiarurl').on('click', function () {
